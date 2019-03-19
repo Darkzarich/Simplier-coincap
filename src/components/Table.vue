@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-table responsive dark hover :items="items" :fields="fields">
+  <div class="row justify-content-md-center">
+    <b-table responsive dark hover :items="items" :fields="fields" class="scroll col-md-8 my-3">
     </b-table>
   </div>
 </template>
@@ -36,5 +36,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
+.scroll {
+  overflow: scroll !important;
+}
 </style>
