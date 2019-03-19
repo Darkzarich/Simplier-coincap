@@ -5,3 +5,5 @@ Instruments used:
 * BootstrapVue
 * axios
 * numeral.js
+
+[Show me what it looks like!](https://darkzarich.github.io/Simplier-coincap/)
