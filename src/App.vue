@@ -22,10 +22,22 @@ export default {
 
 <style>
 .bg {
-  background: #272e34;
+  background: var(--dark);
+}
+
+@media (min-width: 768px) {
+  .bg {
+    background: url("https://d3atagt0rnqk7k.cloudfront.net/wp-content/uploads/2017/11/09095924/cryptocurrency-cannabis.jpg") fixed;
+    background-size: cover;
+  }
+}
+@media (min-width: 768px) {
+  .vh-100 {
+    height: 100vh;
+  }
 }
 
 .no-scroll {
     overflow: hidden;
-  }
+}
 </style>

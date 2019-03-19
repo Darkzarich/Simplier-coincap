@@ -1,6 +1,7 @@
 <template>
   <div class="row justify-content-md-center">
-    <b-table responsive dark hover :items="items" :fields="fields" class="scroll col-md-8 my-3">
+    <b-table responsive dark hover :items="items" :fields="fields"
+             class="scroll col-12 col-md-8 my-md-3">
     </b-table>
   </div>
 </template>
@@ -16,8 +17,18 @@ export default {
       fields: {
         name: { label: 'Name', sortable: true },
         priceUsd: { label: 'Price', sortable: true, formatter: 'formatCurrency' },
-        marketCapUsd: { label: 'Market Cap', sortable: true, formatter: 'formatCurrency' },
-        volumeUsd24Hr: { label: 'Volume (24h)', sortable: true, formatter: 'formatCurrency' },
+        marketCapUsd: {
+          label: 'Market Cap',
+          sortable: true,
+          formatter: 'formatCurrency',
+          class: 'd-none d-md-block',
+        },
+        volumeUsd24Hr: {
+          label: 'Volume (24h)',
+          sortable: true,
+          formatter: 'formatCurrency',
+          class: 'd-none d-md-block',
+        },
       },
       items: [],
     };
@@ -36,7 +47,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.scroll {
-  overflow: scroll !important;
+  .scroll {
+    overflow-y: scroll;
+  }
+
+  @media (min-width: 768px) {
+    .scroll {
+      overflow: hidden;
+      height: 75vh;
+    }
+
+    .scroll:hover {
+      overflow-y: overlay !important;
+    }
+  }
+
+::-webkit-scrollbar {
+  height: 100px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--gray-dark);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
