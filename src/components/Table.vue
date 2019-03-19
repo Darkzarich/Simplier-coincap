@@ -36,9 +36,31 @@ export default {
   async created() {
     const { data } = await axios.get('https://api.coincap.io/v2/assets?limit=15');
     this.items = data.data;
+
+    let coinTitles = '';
+    this.items.forEach((item) => {
+      coinTitles += `${item.id},`;
+    });
+    coinTitles = coinTitles.slice(0, -1);
+
+    const pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${coinTitles}`);
+    pricesWs.onmessage = (msg) => {
+      const changes = JSON.parse(msg.data);
+      for (let i = 0; i < this.items.length; i += 1) {
+        /* eslint-disable no-restricted-syntax */
+        for (const key in changes) {
+          if (this.items[i].id === key) {
+            this.items[i].priceUsd = changes[key];
+          }
+        }
+      }
+    };
   },
   methods: {
     formatCurrency(value) {
+      if (Math.max(Math.floor(Math.log10(Math.abs(value)), 0) + 1 === 4)) {
+        return numeral(value).format('$0,0.00');
+      }
       return numeral(value).format('($0.00a)');
     },
   },
