@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg vh-100 no-scroll">
+  <div id="app" class="bg c-vh-100 no-scroll">
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Simplier CainCap</a>
     </nav>
@@ -32,7 +32,7 @@ export default {
   }
 }
 @media (min-width: 768px) {
-  .vh-100 {
+  .c-vh-100 {
     height: 100vh;
   }
 }
