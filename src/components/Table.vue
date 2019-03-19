@@ -1,7 +1,8 @@
 <template>
   <div class="row justify-content-md-center">
     <b-table responsive dark hover :items="items" :fields="fields"
-             class="scroll col-12 col-md-8 my-md-3">
+             class="scroll col-12 col-md-8 my-md-3" :tbody-transition-props="transProps"
+             primary-key="name">
     </b-table>
   </div>
 </template>
@@ -14,6 +15,10 @@ export default {
   name: 'Table',
   data() {
     return {
+      transProps: {
+        // Transition name
+        name: 'flash-list-item',
+      },
       fields: {
         name: { label: 'Name', sortable: true },
         priceUsd: { label: 'Price', sortable: true, formatter: 'formatCurrency' },
@@ -82,6 +87,13 @@ export default {
     .scroll:hover {
       overflow-y: overlay !important;
     }
+  }
+
+  .flash-list-item-enter-active, .flash-list-item-leave-active {
+    transition: opacity .5s;
+  }
+  .flash-list-item-enter, flash-list-item-leave-to.{
+    opacity: 0;
   }
 
 ::-webkit-scrollbar {
